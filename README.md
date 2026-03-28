@@ -24,8 +24,8 @@ A real-time collaborative note-taking app with a clean, modern interface. Create
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/alfredang/note-taking.git
-   cd note-taking
+   git clone https://github.com/alfredang/collabnote.git
+   cd collabnote
    ```
 
 2. Serve locally (any static server works):
@@ -34,6 +34,12 @@ A real-time collaborative note-taking app with a clean, modern interface. Create
    ```
 
 3. Open `http://localhost:3000`
+
+> This repo is now configured for GitHub Pages deployment via GitHub Actions.
+
+## Firebase Configuration
+
+If you want to enable live sync, replace the placeholder values in `sync.js` with your Firebase project configuration.
 
 ## Collaboration
 
