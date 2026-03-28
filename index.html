@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollabNote | Real-Time Collaborative Notes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- QR Code generator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Firebase SDK (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+</head>
+
+<body class="dark-theme">
+    <div class="app-container">
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i data-lucide="notebook-pen" class="logo-icon"></i>
+                    <h1>CollabNote</h1>
+                </div>
+                <div class="header-actions">
+                    <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                        <i data-lucide="moon" id="theme-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collab Status Bar -->
+            <div id="collab-bar" class="collab-bar hidden">
+                <div class="collab-info">
+                    <i data-lucide="wifi" class="collab-icon"></i>
+                    <span id="collab-status">Connected</span>
+                    <span id="collab-count" class="collab-count">1</span>
+                </div>
+                <button id="leave-room-btn" class="icon-btn small" title="Leave Room">
+                    <i data-lucide="log-out"></i>
+                </button>
+            </div>
+
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Search notes...">
+                </div>
+            </div>
+
+            <div class="notes-list-container">
+                <div id="notes-list" class="notes-list">
+                    <!-- Notes will be injected here -->
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <button id="new-note-btn" class="fab-btn">
+                    <i data-lucide="plus"></i>
+                    <span>New Note</span>
+                </button>
+                <button id="collab-btn" class="collab-btn" title="Collaborate">
+                    <i data-lucide="users"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Editor Area -->
+        <main class="editor-area">
+            <header class="editor-header">
+                <div class="header-left">
+                    <button id="menu-toggle" class="icon-btn menu-btn" title="Open Menu">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <div class="note-meta">
+                        <span id="note-timestamp" class="timestamp">Select or create a note</span>
+                        <span id="word-count" class="word-count">0 words</span>
+                    </div>
+                </div>
+                <div class="editor-actions">
+                    <button id="delete-note-btn" class="icon-btn delete" title="Delete Note">
+                        <i data-lucide="trash-2"></i>
+                    </button>
+                    <button id="share-note-btn" class="icon-btn" title="Share Note">
+                        <i data-lucide="share-2"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="editor-container">
+                <input type="text" id="note-title" placeholder="Note Title" spellcheck="false">
+                <textarea id="note-content" placeholder="Start typing your thoughts..." spellcheck="false"></textarea>
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state hidden">
+                <i data-lucide="file-text" class="empty-icon"></i>
+                <h2>No note selected</h2>
+                <p>Create a new note or select one from the sidebar</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Collab Modal -->
+    <div id="collab-modal" class="modal-overlay hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Collaborate</h2>
+                <button id="close-modal-btn" class="icon-btn" title="Close">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="modal-tabs">
+                <button class="tab-btn active" data-tab="create">Create Room</button>
+                <button class="tab-btn" data-tab="join">Join Room</button>
+            </div>
+
+            <!-- Create Room Tab -->
+            <div id="tab-create" class="tab-content active">
+                <p class="modal-desc">Start a collaborative session. Others can join with the room code or QR code.</p>
+                <div class="form-group">
+                    <label for="host-nickname">Your Nickname</label>
+                    <input type="text" id="host-nickname" placeholder="Enter your name" maxlength="24">
+                </div>
+                <button id="create-room-btn" class="primary-btn">
+                    <i data-lucide="plus-circle"></i>
+                    <span>Create Room</span>
+                </button>
+            </div>
+
+            <!-- Join Room Tab -->
+            <div id="tab-join" class="tab-content">
+                <p class="modal-desc">Enter a 6-digit room code to join an existing session.</p>
+                <div class="form-group">
+                    <label for="join-nickname">Your Nickname</label>
+                    <input type="text" id="join-nickname" placeholder="Enter your name" maxlength="24">
+                </div>
+                <div class="form-group">
+                    <label for="room-code-input">Room Code</label>
+                    <input type="text" id="room-code-input" placeholder="e.g. 123456" maxlength="6" pattern="[0-9]*" inputmode="numeric">
+                </div>
+                <button id="join-room-btn" class="primary-btn">
+                    <i data-lucide="log-in"></i>
+                    <span>Join Room</span>
+                </button>
+            </div>
+
+            <!-- Share Panel (shown after creating a room) -->
+            <div id="share-panel" class="tab-content">
+                <div class="share-success">
+                    <i data-lucide="check-circle" class="success-icon"></i>
+                    <h3>Room Created!</h3>
+                </div>
+                <div class="room-code-display">
+                    <span id="room-code-label" class="room-code-value"></span>
+                    <button id="copy-code-btn" class="icon-btn" title="Copy Code">
+                        <i data-lucide="copy"></i>
+                    </button>
+                </div>
+                <div id="qr-code" class="qr-container"></div>
+                <button id="copy-link-btn" class="secondary-btn">
+                    <i data-lucide="link"></i>
+                    <span>Copy Share Link</span>
+                </button>
+            </div>
+
+            <div id="modal-error" class="modal-error hidden"></div>
+        </div>
+    </div>
+
+    <script src="sync.js"></script>
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
